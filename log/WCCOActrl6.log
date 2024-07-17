@@ -1,0 +1,160 @@
+["___________________________________"]
+["Zaktualizowano datapoint:"]["dptest1"]["na wartość:"][2]["z timestampem:"]["15.07.2024 10:00"]
+["dptest1;2;15.07.2024 10:00;int
+"]
+["___________________________________"]
+["Zaktualizowano datapoint:"]["dptest2"]["na wartość:"][3]["z timestampem:"]["15.07.2024 10:05"]
+["dptest2;3;15.07.2024 10:05;int
+"]
+["___________________________________"]
+["Zaktualizowano datapoint:"]["dptest3"]["na wartość:"][4]["z timestampem:"]["15.07.2024 10:10"]
+["dptest3;4;15.07.2024 10:10;int
+"]
+["___________________________________"]
+["Zaktualizowano datapoint:"]["dptest4"]["na wartość:"][54]["z timestampem:"]["15.07.2024 10:10"]
+["dptest4;54;15.07.2024 10:10;int
+"]
+["___________________________________"]
+["Zaktualizowano datapoint:"]["dptest5"]["na wartość:"][54]["z timestampem:"]["15.07.2024 10:10"]
+["dptest5;54;15.07.2024 10:10;int"]
+["___________________________________"]
+["FT0/TCM/status/TEMP_BOARD"]
+[4]
+["status"]
+["TEMP_BOARD"]
+["\"\",\xffFT0\"\",TCM"]
+["___________________________________"]
+["FT0/TCM/status/TRG_SYNC/C5"]
+[5]
+["status"]
+["TRG_SYNC"]
+["C5"]
+["\"\",FT0\"\",TCM"]
+["___________________________________"]
+["WARNING: znaleziono błąd w pliku źródłowym"]
+["___________________________________"]
+["FT0pb1/TCM/status/TRG_SYNC/C5/TEST"]
+[6]
+[dyn_dyn_string 6 items
+     1: dyn_string 6 items
+	     1: "FT0pb1"
+	     2: ""
+	     3: ""
+	     4: ""
+	     5: ""
+	     6: ""
+
+     2: dyn_string 6 items
+	     1: ""
+	     2: "TCM"
+	     3: ""
+	     4: ""
+	     5: ""
+	     6: ""
+
+     3: dyn_string 6 items
+	     1: ""
+	     2: ""
+	     3: "status"
+	     4: ""
+	     5: ""
+	     6: ""
+
+     4: dyn_string 6 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: "TRG_SYNC"
+	     5: ""
+	     6: ""
+
+     5: dyn_string 6 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: ""
+	     5: "C5"
+	     6: ""
+
+     6: dyn_string 6 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: ""
+	     5: ""
+	     6: "TEST"
+
+]
+["___________________________________"]
+["FT0pb1/TCM/status/TEMP_BOARD"]
+[4]
+[dyn_dyn_string 4 items
+     1: dyn_string 4 items
+	     1: "FT0pb1"
+	     2: ""
+	     3: ""
+	     4: ""
+
+     2: dyn_string 4 items
+	     1: ""
+	     2: "TCM"
+	     3: ""
+	     4: ""
+
+     3: dyn_string 4 items
+	     1: ""
+	     2: ""
+	     3: "status"
+	     4: ""
+
+     4: dyn_string 4 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: "TEMP_BOARD"
+
+]
+["___________________________________"]
+["FT0pb1/TCM/status/TRG_SYNC/C5"]
+[5]
+[dyn_dyn_string 5 items
+     1: dyn_string 5 items
+	     1: "FT0pb1"
+	     2: ""
+	     3: ""
+	     4: ""
+	     5: ""
+
+     2: dyn_string 5 items
+	     1: ""
+	     2: "TCM"
+	     3: ""
+	     4: ""
+	     5: ""
+
+     3: dyn_string 5 items
+	     1: ""
+	     2: ""
+	     3: "status"
+	     4: ""
+	     5: ""
+
+     4: dyn_string 5 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: "TRG_SYNC"
+	     5: ""
+
+     5: dyn_string 5 items
+	     1: ""
+	     2: ""
+	     3: ""
+	     4: ""
+	     5: "C5"
+
+]
+["___________________________________"]
+["WARNING: znaleziono błąd w pliku źródłowym"]
+["aaaaaaaaaaa"]
+[6]

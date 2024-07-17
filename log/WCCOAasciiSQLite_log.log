@@ -1,0 +1,15 @@
+WCCOAasciiSQLite(0), 2024.07.15 15:06:59.833, PARAM,WARNING,   224, Security issue: Username or Password entry found in config file!
+WCCOAasciiSQLite(0), 2024.07.15 15:06:59.838, SYS,  INFO,        1, Manager Start, PROJ, FIT_trnst, V 3.19 - 3.19 P006 platform Windows AMD64 linked at Sep  6 2023 21:30:37 (c93bd1d161c)
+WCCOAasciiSQLite(0), 2024.07.15 15:06:59.838, SYS,  INFO,        3, Trying to connect to (SYS: 0 Data -num 0 CONN: 1) @ Przemek:4897
+WCCOAasciiSQLite(0), 2024.07.15 15:06:59.844, SYS,  INFO,        4, Connected to (SYS: 0 Data -num 0 CONN: 1) @ Przemek (::1)
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.850, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.850, SYS,  INFO,        3, Trying to connect to (SYS: 1 Event -num 0 CONN: 1) @ Przemek:4998
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.854, SYS,  INFO,        4, Connected to (SYS: 1 Event -num 0 CONN: 1) @ Przemek (::1)
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.856, SYS,  INFO,      102, Waiting for user names/passwords
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.856, SYS,  INFO,      103, User names/passwords initialized
+doAsciiIn returned warning code: 35
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.860, SYS,  INFO,      181, Closing connection to (SYS: 1 Data -num 0 CONN: 1)
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.860, SYS,  INFO,      181, Closing connection to (SYS: 1 Event -num 0 CONN: 1)
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.860, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Data -num 0 CONN: 1), Connection closed
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.860, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Event -num 0 CONN: 1), Connection closed
+WCCOAasciiSQLite(1), 2024.07.15 15:06:59.860, SYS,  INFO,        2, Manager Stop

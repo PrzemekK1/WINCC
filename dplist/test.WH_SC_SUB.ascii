@@ -1,0 +1,8 @@
+V 3
+TypeName	WH_SC_SUB
+#DynamicAttribute:		_da_common	_da_common	_da_common
+#Variable:		_unit	_format	_comment
+#Comment:		.value Var: Description, unit (and format): Unit                 [s]	.value Var: Description, unit (and format): Format               [s]	.value Var: Description, unit (and format): Description          [s]
+#Type:		string	string	langString
+Action	ElementName	.value:_da_common.._unit	.value:_da_common.._format	.value:_da_common.._comment
+I	_mp_WH_SC_SUB	h		

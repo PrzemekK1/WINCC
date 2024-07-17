@@ -1,0 +1,26 @@
+main()
+{
+  string installationDp = fwInstallation_getInstallationDp();
+  string installationDir;
+  dpGet(installationDp + ".installationDirectoryPath:_original.._value", installationDir);
+
+  string oldFwFsmLibFile = installationDir + "/scripts/libs/fwFsm";
+
+  if(access(oldFwFsmLibFile, F_OK) == 0 && !isDirectory(oldFwFsmLibFile)){
+    // old fwFsm script exists... rename
+    fwInstallation_throw("fwFSM.preinit: renaming fwFsm to fwFsm.ctl: " + oldFwFsmLibFile, "INFO");
+    string newFwFsmLibFile = oldFwFsmLibFile + ".ctl";
+    if(!moveFile(oldFwFsmLibFile, newFwFsmLibFile)){
+      fwInstallation_throw("Could not rename the " + oldFwFsmLibFile + " file", "ERROR");
+      return;
+    }
+
+    string newFwFsmLibDir = installationDir + "/scripts/libs/fwFSM/";
+    // now create the "fwFSM" folder (note the modified letter-case)
+    fwInstallation_throw("fwFSM.preinit: creating a new folder for fwFSM libs: " + newFwFsmLibDir, "INFO");
+    if(!mkdir(newFwFsmLibDir)){
+      fwInstallation_throw("Could not create the folder:" + newFwFsmLibDir,"WARNING");
+      return;
+    }
+  }
+}

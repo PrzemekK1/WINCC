@@ -1,0 +1,2 @@
+WCCOAui      (0), 2024.07.15 17:26:18.744,	Qt,	QObject::killTimer: Timers cannot be stopped from another thread
+WCCOAui      (0), 2024.07.15 17:26:18.744,	Qt,	QObject::~QObject: Timers cannot be stopped from another thread

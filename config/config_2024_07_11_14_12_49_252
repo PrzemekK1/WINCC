@@ -1,0 +1,15 @@
+[general]
+pvss_path = "C:/Siemens/Automation/WinCC_OA/3.19"
+proj_path = "D:/CERN_new/fwComponents_20240710"
+proj_path = "D:/CERN_new/FIT_trnst"
+proj_version = "3.19"
+useSQLite = 1
+langs = "en_US.utf8"
+useNGA = 1
+distributed = 1
+[ui]
+defaultFont = "Noto Sans"
+activeIconTheme = ""
+LoadCtrlLibs = "fwInstallation/fwInstallation.ctl"
+[ctrl]
+LoadCtrlLibs = "fwInstallation/fwInstallation.ctl"

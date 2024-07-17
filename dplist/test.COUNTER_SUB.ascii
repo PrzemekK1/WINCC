@@ -1,0 +1,8 @@
+V 3
+TypeName	COUNTER_SUB
+#DynamicAttribute:	
+#Variable:	
+#Comment:	
+#Type:	
+Action	ElementName
+I	_mp_COUNTER_SUB

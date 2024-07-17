@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel version="14">
+ <properties>
+  <prop name="Name">
+   <prop name="en_US.utf8"></prop>
+  </prop>
+  <prop name="Size">400 400</prop>
+  <prop name="BackColor">_3DFace</prop>
+  <prop name="RefPoint">-1 -1</prop>
+  <prop name="InitAndTermRef">True</prop>
+  <prop name="SendClick">False</prop>
+  <prop name="RefFileName"></prop>
+  <prop name="DPI">144</prop>
+  <prop name="PDPI">183.0230985915493</prop>
+  <prop name="layoutType">None</prop>
+ </properties>
+ <events>
+  <script name="Initialize" isEscaped="1"><![CDATA[
+int maxsize()
+{
+  return 5;
+}
+
+
+
+main()
+{
+//   dyn_string d,p;
+//   d=makeDynString(&quot;This&quot;,&quot;is&quot;,&quot;a&quot;,&quot;test&quot;);
+//   p[1] = &quot;This&quot;;
+//   p[2] = &quot;is&quot;;
+//   DebugN(p);
+//   DebugN(d);
+//   int a = DPEL_BIT32;
+//   DebugN(a);
+DebugN(&quot;start&quot;);
+int a;
+a=maxsize();
+DebugN(&quot;+++++++++&quot;);
+DebugN(a);
+DebugN(&quot;+++++++++&quot;);
+}
+
+]]></script>
+ </events>
+</panel>

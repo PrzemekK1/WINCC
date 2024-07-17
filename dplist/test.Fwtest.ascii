@@ -1,0 +1,9 @@
+V 3
+TypeName	Fwtest
+#DynamicAttribute:	
+#Variable:	
+#Comment:	
+#Type:	
+Action	ElementName
+I	calculator
+I	_mp_Fwtest

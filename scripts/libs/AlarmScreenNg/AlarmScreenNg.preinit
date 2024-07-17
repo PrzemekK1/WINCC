@@ -1,0 +1,174 @@
+#uses "fwInstallation/fwInstallation.ctl"
+
+// Compatible config versions:
+const int NG_AS_CONFIG_VERSION = 1;
+const int NG_AS_FILTER_VERSION = 1;
+const int NG_AS_FILTER_SET_VERSION = 1;
+const int NG_AS_USER_SETTING_VERSION = 1;
+
+
+const dyn_string _AlarmScreenNgInit_COMPATIBLE_VERSIONS_MIGRATION = makeDynString("9.0.0",
+    "0.19.8",
+    "0.9.9",
+    "0.9.8",
+    "0.9.7",
+    "0.9.6",
+    "0.9.5",
+    "0.9.4",
+    "0.9.3");
+
+mapping dptVersionMap = makeMapping(
+                          "_NgAsConfig", NG_AS_CONFIG_VERSION,
+                          "_NgAsFilter", NG_AS_FILTER_VERSION,
+                          "_NgAsFilterSet", NG_AS_FILTER_SET_VERSION,
+                          "_NgAsUserSetting", NG_AS_USER_SETTING_VERSION
+                        );
+
+mapping dptConfigMap = makeMapping(
+                         "_NgAsConfig", ".ConfigJSON",
+                         "_NgAsFilter", ".FilterJSON",
+                         "_NgAsFilterSet", ".SetJSON",
+                         "_NgAsUserSetting", ".SettingJSON"
+                       );
+
+const dyn_string dpTypeNames = mappingKeys(dptVersionMap);
+
+int _AlarmScreenNgInit_getConfigVersionForDp(const string &dp, const string &dptName)
+{
+  dyn_string configJson;
+  string target = dp + dptConfigMap[dptName];
+  DebugTN("Parsing:", target);
+  dpGet(target, configJson);
+  mapping jsonMap = jsonDecode(configJson);
+
+  if (!mappingHasKey(jsonMap, "Version"))
+  {
+    return 0; // defaulting to version 0 if no Version tag is available.
+  }
+
+  return jsonMap["Version"];
+}
+
+void _AlarmScreenNgInit_processDpesOf(const string &dptName)
+{
+  dyn_string dps = dpNames("*", dptName);
+  bool yesToAll = false;
+
+  for (int dpIdx = 1; dpIdx <= dynlen(dps); dpIdx++)
+  {
+    string dp = dps[dpIdx];
+
+    if (_AlarmScreenNgInit_getConfigVersionForDp(dp, dptName) != dptVersionMap[dptName])
+    {
+      if (yesToAll)
+      {
+        DebugN("Deleting:", dp);
+        dpDelete(dp);
+        continue;
+      }
+
+      dyn_float userReply;
+      dyn_string dreturns;
+      ChildPanelOnCentralModalReturn("fwInstallation/fwInstallation_messageInfo3.pnl",
+                                     "Incompatible DP config version",
+                                     "$1:Incompatible config version for:\n" + dp + "\nDelete incompatible data point?",
+                                     userReply, dreturns);
+
+      switch (userReply[1])
+      {
+        case 0:
+          DebugN("Ignoring:", dp);
+          break;
+
+        case 1:
+          DebugN("Deleting:", dp);
+          dpDelete(dp);
+          break;
+
+        case 2:
+          DebugN("Selected Yes to All");
+          yesToAll = true;
+          DebugN("Deleting:", dp);
+          dpDelete(dp);
+          break;
+
+        case -1:
+          PanelOffReturn(makeDynFloat(userReply[1]), makeDynString("Dp version check cancelled."));
+      }
+    }
+  }
+}
+
+bool _AlarmScreenNgInit_dpTypeExists(const string &dptName)
+{
+  dyn_string dptNames = dpTypes(dptName);
+  return dptNames.contains(dptName);
+}
+
+void _AlarmScreenNgInit_setConfigVersionForDp(const string &dp, const string &dptName, const int version)
+{
+  dyn_string configJson;
+  string target = dp + dptConfigMap[dptName];
+  DebugTN("Parsing: ", target);
+  dpGet(target, configJson);
+  mapping jsonMap = jsonDecode(configJson);
+  jsonMap["Version"] = version;
+  DebugTN("Saving: ", target);
+  dpSetWait(target, jsonEncode(jsonMap, false));
+}
+
+bool _AlarmScreenNgInit_isVersionCompatibleForMigration(const string &version, const dyn_string &compatibleVersions)
+{
+  for (int i = 1; i <= dynlen(compatibleVersions); i++)
+  {
+    if (_fwInstallation_CompareVersions(version, compatibleVersions[i], true, false, true))
+    {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+void _AlarmScreenNgInit_migrationDpesOf(const string &dptName)
+{
+  // Retrieve the version installed. If no version is installed, no migration is possible, so return
+  string verCurrentlyInstalled;
+
+  if (!fwInstallation_isComponentInstalled("AlarmScreenNg", verCurrentlyInstalled))
+  {
+    return;
+  }
+
+  bool migrationPossible = _AlarmScreenNgInit_isVersionCompatibleForMigration(verCurrentlyInstalled, _AlarmScreenNgInit_COMPATIBLE_VERSIONS_MIGRATION);
+
+  dyn_string dps = dpNames("*", dptName);
+
+  for (int dpIdx = 1; dpIdx <= dynlen(dps); dpIdx++)
+  {
+    string dp = dps[dpIdx];
+
+    // Check if it a candidate for migration
+    if (_AlarmScreenNgInit_getConfigVersionForDp(dp, dptName) == 0 &&
+        migrationPossible)
+    {
+      // Set Version field in the JSON as 1
+      _AlarmScreenNgInit_setConfigVersionForDp(dp, dptName, 1);
+    }
+  }
+}
+
+main()
+{
+  for (int dptIdx = 1; dptIdx <= dynlen(dpTypeNames); dptIdx++)
+  {
+
+    string dptName = dpTypeNames[dptIdx];
+
+    if (_AlarmScreenNgInit_dpTypeExists(dptName))
+    {
+      _AlarmScreenNgInit_migrationDpesOf(dptName);
+      _AlarmScreenNgInit_processDpesOf(dptName);
+    }
+  }
+}

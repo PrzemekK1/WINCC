@@ -1,0 +1,29 @@
+/**
+  The main idea of post-install script is implementing approach, realized in the script
+  of fwAlarmHandlingComponet: installation shall import DP types, not DP values, in order
+  not to override users settings in existing project, see
+  @jira{FWAH-353} Keep only DPT and DP definition in dpl files (remove dpe assignment)
+  The script also includes other necessary post-install steps, like removing obsolete file(s);
+  there is no obsolete files at a moment, but they can appear one day.
+  @file $relPath
+  @copyright $copyright
+  @author lkopylov
+*/
+
+#uses "fwAlarmScreenNg/fwAlarmScreenNgPostInstall"
+
+const string THIS_COMPONENT = "fwAlarmScreenNg";
+
+main()
+{
+  _fwAlarmScreenNgPostInstall_asNgMessage("Start Postinstall, file: " + __FILE__, THIS_COMPONENT);
+
+  _fwAlarmScreenNgPostInstall_importBasicConfigs(makeDynString("./dplist/fwAlarmScreenNg/NgAsConfig_JCOP.dpl"),
+											   makeDynString("_NgAsConfig_JCOP.ConfigJSON"),
+											   THIS_COMPONENT);
+
+  _fwAlarmScreenNgPostInstall_setDefaultHelpFileTypes(THIS_COMPONENT);
+  _fwAlarmScreenNgPostInstall_setDefaultMenuJCOP(THIS_COMPONENT);
+
+  _fwAlarmScreenNgPostInstall_asNgMessage("Postinstall completed.", THIS_COMPONENT);
+}

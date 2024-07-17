@@ -1,0 +1,68 @@
+#uses "fwAccessControl/fwAccessControl.ctc"
+main()
+{
+    _fwAccessControl_checkInit();
+
+    // clean up and recreate alert configs...
+    fwInstallation_throw("Reinstalling alarms on Egroup-synchronization internal datapoints","INFO");
+    dyn_string exceptionInfo;
+    fwAlertConfig_deleteMany( makeDynString("_fwAccessControl_egroupSync.suspend","_fwAccessControl_egroupSync.syncStatus","_fwAccessControl_egroupSync.missingScadaID"),exceptionInfo,"",FALSE);
+
+    if (dynlen(exceptionInfo)) { fwInstallation_throw("Could not remove old egroup-sync alert");};
+    dynClear(exceptionInfo);
+
+    // set the alarm on suspend
+    dyn_mixed alarmObject;
+    fwAlertConfig_objectCreateDigital(
+                alarmObject,
+                makeDynString("ok","Suspended"),
+                makeDynString("","_fwWarningNack."),
+                "", //panel name - optional
+                makeDynString(""),//panel $params - optional
+                "", //help text - optional
+                exceptionInfo);
+    fwAlertConfig_objectSet("_fwAccessControl_egroupSync.suspend", alarmObject, exceptionInfo);
+    if (dynlen(exceptionInfo)) { fwInstallation_throw("Could not configure alert on egroupSync.suspend");};
+
+    dynClear(exceptionInfo);
+    dynClear(alarmObject);
+    fwAlertConfig_objectCreateAnalog(
+                alarmObject, //the object that will contain the alarm settings
+                makeDynString("ScadaID OK for all accounts","Accounts missing ScadaID"), //the text for the 2 ranges
+                makeDynFloat(0,0), //the 2 ranges. The 1st value must always be 0.
+                makeDynString("","_fwErrorNack."), //classes
+                "fwAccessControl/fwAccessControl_egroupSyncAlarm.pnl", //alarm panel, if necessary
+                makeDynString(""), //$-params to pass to the alarm panel, if necessary
+                "", //alarm help, if needed
+                makeDynBool(0,1), //value included (1 means ">=", 0 means ">", 1st element ignored).
+                exceptionInfo); //exception info returned here
+    fwAlertConfig_objectSet("_fwAccessControl_egroupSync.missingScadaID", alarmObject, exceptionInfo);
+    if (dynlen(exceptionInfo)) { fwInstallation_throw("Could not configure alert on egroupSync.suspend");};
+
+
+    dynClear(exceptionInfo);
+    dynClear(alarmObject);
+    fwAlertConfig_objectCreateDiscrete(
+                alarmObject, //the object that will contain the alarm settings
+                makeDynString("OK","LDAP Query Error","Cannot resolve group names","Cannot set users data","Egroup data integrity problem","No Egroups to sync","Exception encountered"), //the text
+                makeDynString("*","1","2","3","4","99","100"), //the ranges must match these values (the 1st must be always the good one - *)
+                makeDynString("","_fwErrorNack.","_fwErrorNack.","_fwErrorNack.","_fwErrorNack.","information.","_fwErrorNack."), //classes (the 1st one must always be the good one)
+                "", //alarm panel, if necessary
+                makeDynString(""), //$-params to pass to the alarm panel, if necessary
+                "", //alarm help, if needed
+                true, //impulse alarm
+                makeDynBool(0,0,0,0,0,0,0), //negation of the matching (0 means "=", 1 means "!=")
+                "", //state bits that must also match for the alarm
+                makeDynString("","","","","","",""), //state bits that must match for each range
+                exceptionInfo ); //exception info returned here
+
+    fwAlertConfig_objectSet("_fwAccessControl_egroupSync.syncStatus", alarmObject, exceptionInfo);
+    if (dynlen(exceptionInfo)) { fwInstallation_throw("Could not configure alert on egroupSync.syncStatus");};
+
+
+    dynClear(exceptionInfo);
+    fwAlertConfig_activateMultiple(makeDynString("_fwAccessControl_egroupSync.suspend","_fwAccessControl_egroupSync.syncStatus","_fwAccessControl_egroupSync.missingScadaID"), exceptionInfo);
+    if (dynlen(exceptionInfo)) { fwInstallation_throw("Could not activate alerts for egroup-sync");};
+
+    fwInstallation_cleanupObsoleteFiles("fwAccessControl", makeDynString("help/en_US.iso88591/fwAccessControl"),true);
+}

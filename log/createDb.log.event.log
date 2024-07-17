@@ -1,0 +1,88 @@
+WCCILevent   (0), 2024.07.11 12:47:30.512, SYS,  INFO,        1, Manager Start, PROJ, FIT_trnst, V 3.19 - 3.19 P006 platform Windows AMD64 linked at Sep  6 2023 21:30:37 (c93bd1d161c)
+WCCILevent   (0), 2024.07.11 12:47:30.513, SYS,  INFO,      108, License information, Wibu CodeMeter License
+WCCILevent   (0), 2024.07.11 12:47:31.550, SYS,  WARNING,   105, Invalid license, CodeMeter request for: event (9921) - returned: CmContainer Entry not found, Error 200.
+WCCILevent   (0), 2024.07.11 12:47:31.551, SYS,  WARNING,   105, Invalid license, CodeMeter request for: event (9921) - returned: CmContainer Entry not found, Error 200.
+WCCILevent   (0), 2024.07.11 12:47:31.553, SYS,  SEVERE,    105, Invalid license, Przemek: No license found
+WCCILevent   (0), 2024.07.11 12:47:31.554, SYS,  INFO,        3, Trying to connect to (SYS: 0 Data -num 0 CONN: 1) @ localhost:4897
+WCCILevent   (0), 2024.07.11 12:47:31.556, SYS,  INFO,        4, Connected to (SYS: 0 Data -num 0 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Event.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Driver.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Data.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ui.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ctrl.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.560, PARAM,SEVERE,     71, DP does not exist, _Connections.Ascii.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Api.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Device.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Redu.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Report.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dde.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.ManNums:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.StartTimes:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.561, PARAM,SEVERE,     71, DP does not exist, _Connections.Dist.HostNames:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.566, SYS,  WARNING,   105, Invalid license, CodeMeter request for: event (9921) - returned: CmContainer Entry not found, Error 200.
+WCCILevent   (0), 2024.07.11 12:47:31.566, SYS,  SEVERE,    105, Invalid license, Przemek: No license found
+WCCILevent   (0), 2024.07.11 12:47:31.566, SYS,  INFO,        6, Initialization by Data Manager finished
+WCCILevent   (0), 2024.07.11 12:47:31.598, SYS,  INFO,      169, Initialize 0 dp-functions
+WCCILevent   (0), 2024.07.11 12:47:31.598, SYS,  INFO,      168, Initialize 0 alerts
+WCCILevent   (0), 2024.07.11 12:47:31.598, PARAM,WARNING,     7, Datapoint does not exist, EvFixedLicenses, EvFixedLicenses, _Event.License.FixedShield
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, UserTable, UserTable, _Users.UserId
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, ManagerTable, ManagerTable, _Managers.Auth.ManType
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpType:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.Dp:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpAuth:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, doDpConnect, _System.Auth.DpAlias:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, dpDpConnect, _Event.ReadLicense
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     8, Element does not exist, EventManager, doDpConnect, _Managers.Exit
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     8, Element does not exist, EventManager, doDpConnect, _Managers.Refresh
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.ExpirationCnt
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.RemainingTime
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.alm.isRTILInvalid:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.alm.isPVSSInvalid:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.cmLicenseInvalid:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, PARAM,WARNING,     7, Datapoint does not exist, EventManager, evMain, _Event.License.alm.shield:_original.._value
+WCCILevent   (0), 2024.07.11 12:47:31.599, SYS,  SEVERE,    105, Invalid license, Eventmanager will shutdown after the demo period of 1800 seconds
+WCCILevent   (0), 2024.07.11 12:47:31.842, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, driver
+WCCILevent   (0), 2024.07.11 12:47:31.842, SYS,  INFO,        4, Connected to (SYS: 1 Driver -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:32.401, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, ascii
+WCCILevent   (0), 2024.07.11 12:47:32.402, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:32.696, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:32.791, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, ascii
+WCCILevent   (0), 2024.07.11 12:47:32.792, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:33.377, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:33.578, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, ascii
+WCCILevent   (0), 2024.07.11 12:47:33.579, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:37.593, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:37.786, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, ascii
+WCCILevent   (0), 2024.07.11 12:47:37.787, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:37.920, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:38.009, SYS,  WARNING,   105, Invalid license, Przemek: No license found, Running as demo version, ascii
+WCCILevent   (0), 2024.07.11 12:47:38.011, SYS,  INFO,        4, Connected to (SYS: 1 Ascii -num 1 CONN: 1) @ Przemek (::1)
+WCCILevent   (0), 2024.07.11 12:47:38.024, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Ascii -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:38.083, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Driver -num 1 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:38.098, SYS,  INFO,        2, Manager Stop, received signal 15, exiting
+WCCILevent   (0), 2024.07.11 12:47:38.190, SYS,  INFO,        2, Manager Stop, start cleanup
+WCCILevent   (0), 2024.07.11 12:47:38.190, SYS,  INFO,      181, Closing connection to (SYS: 1 Data -num 0 CONN: 1)
+WCCILevent   (0), 2024.07.11 12:47:38.190, SYS,  INFO,       39, Connection lost, MAN: (SYS: 1 Data -num 0 CONN: 1), Connection closed
+WCCILevent   (0), 2024.07.11 12:47:38.201, SYS,  INFO,        2, Manager Stop

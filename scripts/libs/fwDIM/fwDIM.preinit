@@ -1,0 +1,26 @@
+main()
+{
+  string installationDp = fwInstallation_getInstallationDp();
+  string installationDir;
+  dpGet(installationDp + ".installationDirectoryPath:_original.._value", installationDir);
+
+  string oldFwDimLibFile = installationDir + "/scripts/libs/fwDIM";
+
+  if(access(oldFwDimLibFile, F_OK) == 0 && !isDirectory(oldFwDimLibFile)){
+    // old fwDIM script exists... rename
+    fwInstallation_throw("fwDIM.preinit: renaming fwDIM to fwDIM.ctl: " + oldFwDimLibFile, "INFO");
+    string newFwDimLibFile = oldFwDimLibFile + ".ctl";
+    if(!moveFile(oldFwDimLibFile, newFwDimLibFile)){
+      fwInstallation_throw("Could not rename the " + oldFwDimLibFile + " file", "ERROR");
+      return;
+    }
+
+    string newFwDimLibDir = installationDir + "/scripts/libs/fwDIM/";
+    // now create the "fwDIM" folder
+    fwInstallation_throw("fwDIM.preinit: creating a new folder for fwDIM libs: " + newFwDimLibDir, "INFO");
+    if(!mkdir(newFwDimLibDir)){
+      fwInstallation_throw("Could not create the folder:" + newFwDimLibDir,"WARNING");
+      return;
+    }
+  }
+}

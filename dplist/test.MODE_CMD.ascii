@@ -1,0 +1,8 @@
+V 3
+TypeName	MODE_CMD
+#DynamicAttribute:		_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out	_da_address_OPCCLIENT_out
+#Variable:		_active	Group	Item	_linint1_x	_linint2_x	_linint1_y	_linint2_y
+#Comment:		.auto OPC output: Address active    [b0/1]	.auto OPC output: OPC group name       [s]	.auto OPC output: OPC itemname         [s]	.auto OPC output: Input value minimum         [f]	.auto OPC output: Input value maximum         [f]	.auto OPC output: Output value minimum        [f]	.auto OPC output: Output value maximum        [f]
+#Type:		bool	string	string	float	float	float	float
+Action	ElementName	.auto:_da_address_OPCCLIENT_out.._active	.auto:_da_address_OPCCLIENT_out..Group	.auto:_da_address_OPCCLIENT_out..Item	.auto:_da_address_OPCCLIENT_out.._linint1_x	.auto:_da_address_OPCCLIENT_out.._linint2_x	.auto:_da_address_OPCCLIENT_out.._linint1_y	.auto:_da_address_OPCCLIENT_out.._linint2_y
+I	_mp_MODE_CMD	FALSE	CMD	_mp_MODE_CMD.auto	0	100	0	100

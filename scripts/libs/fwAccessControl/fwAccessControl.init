@@ -1,0 +1,19 @@
+main()
+{
+    // remove old binaries
+    const dyn_string oldBinariesList = makeDynString(
+            "./bin/fwAccessControl/CtrlLDAP_3.15.so",
+            "./bin/fwAccessControl/CtrlLDAP_3.15.dll",
+            "./bin/fwAccessControl/CtrlLDAP_3.16.so",
+            "./bin/fwAccessControl/CtrlLDAP_3.16.dll"
+            );
+
+    const string componentName = "fwAccessControl";
+    fwInstallation_cleanupObsoleteFiles(componentName, oldBinariesList);
+
+    fwInstallation_cleanupObsoleteFiles(componentName, 
+        makeDynString(  "help/en_US.utf8/fwAccessControl/panels"
+                        "help/en_US.utf8/fwAccessControl/scripts"
+                        "help/en_US.utf8/fwAccessControl/fwAccessControl.htm"
+        ),true);
+}

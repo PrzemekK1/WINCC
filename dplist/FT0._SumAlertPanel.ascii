@@ -1,0 +1,8 @@
+V 3
+TypeName	_SumAlertPanel
+#DynamicAttribute:		_da_alert_hdl_sum	_da_alert_hdl_sum	_da_alert_hdl_sum	_da_alert_hdl_sum	_da_alert_hdl_sum	_da_alert_hdl_sum
+#Variable:		alertActive	alertString	alertActive	alertString	alertActive	alertString
+#Comment:		.Alert Sumalert: Active alert      [b0/1]	.Alert Sumalert: Source datapoints   [dp]	.Danger Sumalert: Active alert      [b0/1]	.Danger Sumalert: Source datapoints   [dp]	.Warning Sumalert: Active alert      [b0/1]	.Warning Sumalert: Source datapoints   [dp]
+#Type:		bool	string	bool	string	bool	string
+Action	ElementName	.Alert:_da_alert_hdl_sum..alertActive	.Alert:_da_alert_hdl_sum..alertString	.Danger:_da_alert_hdl_sum..alertActive	.Danger:_da_alert_hdl_sum..alertString	.Warning:_da_alert_hdl_sum..alertActive	.Warning:_da_alert_hdl_sum..alertString
+I	_mp__SumAlertPanel	FALSE	_TmpBitAlert.	FALSE	_TmpBitAlert.	FALSE	_TmpBitAlert.

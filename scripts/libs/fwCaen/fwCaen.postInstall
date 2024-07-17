@@ -1,0 +1,67 @@
+int main()
+{
+  int iAnswer;
+  string sDpToRemove;
+  dyn_errClass deError;
+
+
+  DebugTN("");
+  DebugTN("**************** fwCaen .postinstall (start) ****************");
+  DebugTN("");
+
+
+  // Remove obsolete DPs
+  sDpToRemove = "FwCaenBoardEasyModelA3801v301";
+  if( dpExists(sDpToRemove) )
+  {
+    iAnswer = dpDelete(sDpToRemove);
+    if( iAnswer != 0 )
+    {
+      DebugTN("fwCaen.postInstall script: Error removing obsolete DP: " + sDpToRemove);
+      return -1;
+    }
+    else
+    {
+      deError = getLastError();
+      if( dynlen(deError) > 0 )
+      {
+        DebugTN("fwCaen.postInstall script: Error removing obsolete DP: " + sDpToRemove + ", due to:" + getErrorText(deError));
+        return -1;
+      }
+      else
+        DebugTN("fwCaen.postInstall script: Obsolete DP removed: " + sDpToRemove);
+    }
+  }
+
+
+  sDpToRemove = "FwCaenChannelADCModelCaenEasyChannelA3801v301";
+  if( dpExists(sDpToRemove) )
+  {
+    iAnswer = dpDelete(sDpToRemove);
+    if( iAnswer != 0 )
+    {
+      DebugTN("fwCaen.postInstall script: Error removing obsolete DP: " + sDpToRemove);
+      return -1;
+    }
+    else
+    {
+      deError = getLastError();
+      if( dynlen(deError) > 0 )
+      {
+        DebugTN("fwCaen.postInstall script: Error removing obsolete DP: " + sDpToRemove + ", due to:" + getErrorText(deError));
+        return -1;
+      }
+      else
+        DebugTN("fwCaen.postInstall script: Obsolete DP removed: " + sDpToRemove);
+    }
+  }
+
+  DebugTN("");
+  DebugTN("**************** fwCaen .postinstall (finish) ****************");
+  DebugTN("");
+  return 0;
+}
+
+
+
+

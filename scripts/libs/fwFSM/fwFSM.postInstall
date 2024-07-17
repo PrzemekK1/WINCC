@@ -1,0 +1,146 @@
+main()
+{
+    cleanup();
+
+
+    // get fwFSM's installation path
+    dyn_anytype installationDirInfo;
+    if( fwInstallation_getComponentInfo("fwFSM", "installationdirectory", installationDirInfo) != 0 || dynlen(installationDirInfo) != 1) {
+	fwInstallation_throw("Failed to retrieve installation directory of fwFSM. Aborting the fwFSM.postInstall script execution","ERROR");
+	return;
+    }
+    string inst_path=installationDirInfo[1];
+
+    // copy some of necessary files from component to project dir
+    copy_files(inst_path);
+
+    // check/add the manager
+    string manOptions = "fwFSM/fwFsmSrvr.ctl";
+    dyn_mixed properties;
+    fwInstallationManager_getProperties("WCCOActrl", manOptions, properties);
+    if(dynlen(properties) < FW_INSTALLATION_MANAGER_OPTIONS) {
+        // manager not yet added
+        string manTitle="fwFsmSrvr";
+        fwInstallation_throw("fwFsm.postInstall: Appending new CTRL manager: "+manOptions,"INFO");
+        fwInstallationManager_append(0,manTitle,"WCCOActrl","always",30,3,5,manOptions);
+    }
+    
+    fwInstallation_throw("fwFsm.postInstall: done","INFO");
+}
+
+copy_files(string inst_path)
+{
+    int ok;
+
+    if (!isdir(inst_path+"/smi"))                 mkdir(inst_path+"/smi","777");
+    if (!isdir(getPath(SCRIPTS_REL_PATH)+"/fsm")) mkdir(getPath(SCRIPTS_REL_PATH)+"/fsm");
+
+    fwInstallation_throw("fwFSM.postInstall: Copying SMI files","INFO");
+    ok = copyAllFiles(inst_path + "/smi", PROJ_PATH + "/smi");
+    if (!ok) fwInstallation_throw("fwFSM.postInstall: failed copying SMI files","WARNING");
+/*
+    fwInstallation_throw("fwFSM.postInstall: copying fwUi.pnl","INFO");
+    ok = copyFile(inst_path + "/panels/fwFSMuser/fwUi.pnl", PROJ_PATH + "/panels/fwFSMuser/fwUi.pnl");
+    if (!ok) fwInstallation_throw("fwFSM.postInstall: failed copying fwUi.pnl","WARNING");
+
+    fwInstallation_throw("fwFSM.postInstall: copying logo.pnl","INFO");
+    ok = copyFile(inst_path + "/panels/fwFSMuser/logo.pnl", PROJ_PATH + "/panels/fwFSMuser/logo.pnl");
+    if (!ok) fwInstallation_throw("fwFSM.postInstall: failed copying logo.pnl","WARNING");
+*/
+}
+
+cleanup()
+{
+
+
+  fwInstallation_cleanupObsoleteFiles("fwFSM", 
+   makeDynString(
+     "scripts/libs/fwFsm.ctl"            , "scripts/libs/fwFsm.ctl_old"             ,
+     "scripts/libs/fwCU"                 , "scripts/libs/fwCU_old"                  ,
+     "scripts/libs/fwDU"                 , "scripts/libs/fwDU_old"                  ,
+     "scripts/libs/fwUi"                 , "scripts/libs/fwUi_old"                  ,
+     "scripts/libs/fwUiTest"             , "scripts/libs/fwUiTest_old"              ,
+     "scripts/libs/fwFsmBasics.ctl"      , "scripts/libs/fwFsmBasics.ctl_old"       ,
+     "scripts/libs/fwFsmEvent.ctl"       , "scripts/libs/fwFsmEvent.ctl_old"        ,
+     "scripts/libs/fwFsmTreeDisplay.ctl" , "scripts/libs/fwFsmTreeDisplay.ctl_old"  ,
+     "scripts/libs/fwFsmUi.ctl"          , "scripts/libs/fwFsmUi.ctl_old"           ,
+     "scripts/libs/fwFsmUserTemplate.ctl", "scripts/libs/fwFsmUserTemplate.ctl_old" ,
+     "scripts/libs/fwFsmUtil.ctl"        , "scripts/libs/fwFsmUtil.ctl_old"         ,
+     "scripts/libs/fwTree.ctl"           , "scripts/libs/fwTree.ctl_old"            ,
+     "scripts/libs/fwTreeDisplay.ctl"    , "scripts/libs/fwTreeDisplay.ctl_old"     ,
+     "scripts/example_fwCU.ctl"          , "scripts/example_fwCU.ctl_old"           ,
+     "scripts/example_fwFsmTree.ctl"     , "scripts/example_fwFsmTree.ctl_old"      ,
+     "scripts/fwFsmDeviceHandler"        , "scripts/fwFsmDeviceHandler_old"         ,
+     "scripts/fwFsmInstall"              , "scripts/fwFsmInstall_old"               ,
+     "scripts/fwFsmInstallDemo"          , "scripts/fwFsmInstallDemo_old"           ,
+     "scripts/fwFsmSrvr"                 , "scripts/fwFsmSrvr_old"                  ,
+     "panels/fwFSM/fsm/dpsel1"           ,
+     "panels/fwFSM/fsm/dpsel2"           ,
+     "panels/fwFSM/fsm/myColorSel"       ,
+     "panels/fwFSM/fsm/text_editor"      ,
+     "panels/fwFSM/ui/fwFsmDeviceLock.pnl" ,
+     "panels/fwFSM/fsm/fwTreeAdvancedSettings.pnl"
+   ));
+
+  fwInstallation_cleanupObsoleteFiles("fwFSM", makeDynString("source/FwFSM"),true);
+
+  fwInstallation_cleanupObsoleteFiles("fwFSM",
+      makeDynString(                   "bin/WCCOAsmi_old"               ,
+                                       "bin/WCCOAsmi.exe_old"           ,
+        "bin/libsmiuirtl.so"         , "bin/libsmiuirtl.so_old"         ,
+        "bin/libsmirtl.so"           , "bin/libsmirtl.so_old"           ,
+        "bin/libdim.so"              , "bin/libdim.so_old"              ,
+        "bin/libsmi.so"              , "bin/libsmi.so_old"              ,
+        "bin/libsmiui.so"            , "bin/libsmiui.so_old"            ,
+        "bin/libsmiuirtl.so"         , "bin/libsmiuirtl.so_old"         ,
+        "bin/libsmirtl.so"           , "bin/libsmirtl.so_old"           ,
+        "bin/libdim.so"              , "bin/libdim.so_old"              ,
+        "bin/libwklin.so.4"          , "bin/libwklin.so.4_old"          ,
+        "bin/smiuirtl.dll"           , "bin/smiuirtl.dll_old"           ,
+        "bin/smirtl.dll"             , "bin/smirtl.dll_old"             ,
+        "bin/dim.dll"                , "bin/dim.dll_old"                ,
+        "bin/did"                    , "bin/did_old"                    ,
+        "bin/dim_send_command"       , "bin/dim_send_command_old"       ,
+        "bin/dim_send_command.exe"   , "bin/dim_send_command.exe_old"   ,
+        "bin/GUTILS.DLL"             , "bin/GUTILS.DLL_old"             ,
+        "bin/dns"                    , "bin/dns_old"                    ,
+        "bin/Dns.exe"                , "bin/Dns.exe_old"                ,
+        "bin/Dns"                    , "bin/Dns_old"                    ,
+        "bin/msvcp120.dll"           , "bin/msvcp120.dll_old"           ,
+        "bin/msvcr120.dll"           , "bin/msvcr120.dll_old"           ,
+        "bin/RenameMe_libsmiSMrtl.so", "bin/RenameMe_libsmiSMrtl.so_old",
+        "bin/RenameMe_smiSMrtl.dll"  , "bin/RenameMe_smiSMrtl.dll_old"  ,
+        "bin/smi_send_command"       , "bin/smi_send_command_old"       ,
+        "bin/smi_send_command.exe"   , "bin/smi_send_command.exe_old"   ,
+        "bin/smiSM"                  , "bin/smiSM_old"                  ,
+        "bin/smiSM.exe"              , "bin/smiSM.exe_old"              ,
+        "bin/smiTrans"               , "bin/smiTrans_old"               ,
+        "bin/smiTrans.exe"           , "bin/smiTrans.exe_old"           ,
+        "bin/WCCOAsmi3.15"           , "bin/WCCOAsmi3.15_old"           ,
+        "bin/WCCOAsmi3.15.exe"       , "bin/WCCOAsmi3.15.exe_old"       ,
+        "bin/WCCOAsmi3.16"           , "bin/WCCOAsmi3.16_old"           ,
+        "bin/WCCOAsmi3.16.exe"       , "bin/WCCOAsmi3.16.exe_old"       ,
+        "bin/WINDIFF.EXE"            , "bin/WINDIFF.EXE_old"            ,
+        "bin/xwindiff"               , "bin/xwindiff_old"               ,
+        "config/fwFsm.init"          ,
+        "config/fwFsm.postInstall"   ,
+        "fwFSM_old.xml_old"          ,
+        "FwFSM_todo.txt"             ,
+        "fwFSM_README_old"           ,
+        "fwFSM_README_v20"           ,
+        "fwFSM_README_v21"           ,
+        "fwFSM_README_v23"           ,
+        "fwFSM_README_v24"           ,
+        "fwFSM_README_v25"           ,
+        "fwFSM_README_v26"           ,
+        "fwFSM_README_v27"           ,
+        "fwFSM_README_v28"           ,
+        "fwFSM_README_v30"           ,
+        "fwFSM_README_v31"           ,
+        "fwFSM_README_v32"           ,
+        "fwFSM_README_v33"           ,
+        "fwFSM_README_v34"
+     ));
+
+  fwInstallation_cleanupObsoleteFiles("fwFSM",  makeDynString("help/en_US.utf8/fwFSM/scripts/"), true);
+}

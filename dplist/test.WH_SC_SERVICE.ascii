@@ -1,0 +1,8 @@
+V 3
+TypeName	WH_SC_SERVICE
+#DynamicAttribute:		_da_alert_hdl	_da_alert_hdl_4	_da_alert_hdl_4	_da_alert_hdl_4	_da_alert_hdl_4	_da_original	_da_original	_da_original	_da_original	_da_original
+#Variable:		alertActive	alertActive	maxAlert	minWarning	minAlert	_original	_original	_original	_original	_original
+#Comment:		.cmd.off Alert handling: Active alert      [b0/1]	.value.timeLeft Alert handling with 4 ranges: Active alert      [b0/1]	.value.timeLeft Alert handling with 4 ranges: Upper alert limit    [f]	.value.timeLeft Alert handling with 4 ranges: Lower warning limit  [f]	.value.timeLeft Alert handling with 4 ranges: Lower alert limit    [f]	.para.action Original value: Original value	.para.interval Original value: Original value	.para.offLimit Original value: Original value	.para.timeLeftOld Original value: Original value	.para.type Original value: Original value
+#Type:		bool	bool	langStringText	langStringText	langStringText	anytype	anytype	anytype	anytype	anytype
+Action	ElementName	.cmd.off:_da_alert_hdl..alertActive	.value.timeLeft:_da_alert_hdl_4..alertActive	.value.timeLeft:_da_alert_hdl_4..maxAlert	.value.timeLeft:_da_alert_hdl_4..minWarning	.value.timeLeft:_da_alert_hdl_4..minAlert	.para.action:_da_original.._original	.para.interval:_da_original.._original	.para.offLimit:_da_original.._original	.para.timeLeftOld:_da_original.._original	.para.type:_da_original.._original
+I	_mp_WH_SC_SERVICE	TRUE	FALSE	100	0	-100	empty service text	8760	0	8760	1

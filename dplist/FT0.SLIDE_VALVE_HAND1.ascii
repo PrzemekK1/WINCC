@@ -1,0 +1,8 @@
+V 3
+TypeName	SLIDE_VALVE_HAND1
+#DynamicAttribute:		_da_alert_hdl
+#Variable:		alertActive
+#Comment:		.alert.alert Alert handling: Active alert      [b0/1]
+#Type:		bool
+Action	ElementName	.alert.alert:_da_alert_hdl..alertActive
+I	_mp_SLIDE_VALVE_HAND1	TRUE

@@ -1,0 +1,10 @@
+V 3
+TypeName	_Watchdog
+#DynamicAttribute:		_da_alert_hdl
+#Variable:		alertActive
+#Comment:		.Blocking Alert handling: Active alert      [b0/1]
+#Type:		bool
+Action	ElementName	.Blocking:_da_alert_hdl..alertActive
+I	_mp__Watchdog	TRUE
+I	_Watchdog_WCCILevent_0	TRUE
+I	_Watchdog_WCCILevent_0_2	TRUE

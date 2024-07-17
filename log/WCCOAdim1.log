@@ -1,0 +1,40 @@
+PVSS00dim(1) - Fri Jul 12 09:18:34 2024
+	*** Using DIM Config DP: DimDemoConfig
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 2 DIM Client Service(s) Set Up
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 1 DIM Client Command(s) Set Up
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 2 DIM Server Service(s) Set Up
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 1 DIM Server Command(s) Set Up
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 1 DIM Client RPC(s) Set Up
+PVSS00dim(1) - Fri Jul 12 09:18:35 2024
+	*** 1 DIM Server RPC(s) Set Up
+PID 15012 - Fri Jul 12 09:21:24 2024 - (ERROR) Client Connecting to DIM_DNS@server.dyndns.cern.ch: Connection refused
+PID 15012 - Fri Jul 12 09:21:42 2024 - (ERROR) Server Connecting to DIM_DNS@server.dyndns.cern.ch: Connection refused
+PID 15012 - Fri Jul 12 09:24:36 2024 - (INFO) Client Connection established to DIM_DNS@server.dyndns.cern.ch
+PID 15012 - Fri Jul 12 09:24:37 2024 - (INFO) Server Connection established to DIM_DNS@server.dyndns.cern.ch
+PVSS00dim(1) - Fri Jul 12 09:37:15 2024
+	Exiting... 
+PVSS00dim(1) - Fri Jul 12 14:09:31 2024
+	*** Using DIM Config DP: fwDimDefaultConfig
+PVSS00dim(1) - Fri Jul 12 14:09:49 2024
+	Exiting... 
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** Using DIM Config DP: DimDemoConfig
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 2 DIM Client Service(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 1 DIM Client Command(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 2 DIM Server Service(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 1 DIM Server Command(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 1 DIM Client RPC(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:06:37 2024
+	*** 1 DIM Server RPC(s) Set Up
+PVSS00dim(1) - Mon Jul 15 14:23:24 2024
+	Exiting... 

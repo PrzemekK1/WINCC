@@ -1,0 +1,61 @@
+main()
+{
+    cleanup();
+}
+
+
+void cleanup()
+{
+
+  fwInstallation_cleanupObsoleteFiles("fwDIM", makeDynString("source/FwDIM"),true);
+
+  fwInstallation_cleanupObsoleteFiles("fwDIM",
+     makeDynString(                             
+          "scripts/libs/fwDIM_new"            , "scripts/libs/fwDIM_old"                 ,
+                                                "scripts/fwDIM/fwDIM.init"               ,
+          "scripts/libs/fwDIM.ctl"            , "scripts/libs/fwDIM.ctl_old"             ,
+          "scripts/libs/fwDimCacheHash.ctl"   , "scripts/libs/fwDimCacheHash.ctl_old"    ,
+          "scripts/fwDimInstall"              , "scripts/fwDimInstall_old"               ,
+          "scripts/fwDimInstallDemo"          , "scripts/fwDimInstallDemo_old"           ,
+                                                "bin/WCCOAdim_old"                       ,
+          "bin/libdim.so"                     , "bin/libdim.so_old"                      ,
+          "bin/libwklin.so.4"                 , "bin/libwklin.so.4_old"                  ,
+                                                "bin/WCCOAdim.exe_old"                   ,
+          "bin/libdim.so"                     , "bin/dim.dll_old"                        ,
+          "bin/did"                           , "bin/did_old"                            ,
+          "bin/dns"                           , "bin/dns_old"                            ,
+          "bin/Dns.exe"                       , "bin/Dns.exe_old"                        ,
+          "bin/Dns"                           , "bin/Dns_old"                            ,
+          "bin/msvcp120.dll"                  , "bin/msvcp120.dll_old"                   ,
+          "bin/msvcr120.dll"                  , "bin/msvcr120.dll_old"                   ,
+          "bin/pvss_dim_client"               , "bin/pvss_dim_client_old"                ,
+          "bin/pvss_dim_client.exe"           , "bin/pvss_dim_client.exe_old"            ,
+          "bin/pvss_dim_server"               , "bin/pvss_dim_server_old"                ,
+          "bin/pvss_dim_server.exe"           , "bin/pvss_dim_server.exe_old"            ,
+          "bin/WCCOAdim3.15"                  , "bin/WCCOAdim3.15_old"                   ,
+          "bin/WCCOAdim3.15.exe"              , "bin/WCCOAdim3.15.exe_old"               ,
+          "bin/WCCOAdim3.16"                  , "bin/WCCOAdim3.16_old"                   ,
+          "bin/WCCOAdim3.16.exe"              , "bin/WCCOAdim3.16.exe_old"               ,
+          "bin/fwDim.sh"                      , "bin/fwDim.csh"                          ,
+          "config/fwDIM.config"               ,
+          "config/fwDIM.init"                 ,
+          "config/fwDIM.postInstall"          ,
+          "fwDIM_README_V16"                  ,
+          "fwDIM_README_V17"                  ,
+          "fwDIM_README_V18"                  ,
+          "fwDIM_README_V19"                  ,
+          "fwDIM_README_V20"                  ,
+          "fwDIM_README_V21"                  ,
+          "fwDIM_README_V22"                  ,
+          "fwDIM_README_V23"                  ,
+          "fwDIM_README_V24"                  ,
+          "README_V11"                        ,
+          "README_V12"                        ,
+          "README_V13"                        ,
+          "README_V14"                        ,
+          "README_V15"
+    ));
+
+  fwInstallation_cleanupObsoleteFiles("fwDIM", makeDynString("help/en_US.utf8/fwDIM/scripts"), true);
+
+}

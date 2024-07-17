@@ -1,0 +1,6 @@
+main()
+{
+    fwInstallation_cleanupObsoleteFiles("fwXML", makeDynString("help/en_US.iso88591/fwXML"),true);
+    fwInstallation_cleanupObsoleteFiles("fwXML", makeDynString("help/en_US.utf8/fwXML/scripts"),true);
+}
+

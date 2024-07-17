@@ -1,0 +1,8 @@
+V 3
+TypeName	_SSC_KPI
+#DynamicAttribute:	
+#Variable:	
+#Comment:	
+#Type:	
+Action	ElementName
+I	_mp__SSC_KPI

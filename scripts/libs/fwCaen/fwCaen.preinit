@@ -1,0 +1,71 @@
+int main()
+{
+  int iResult, iLoop, iLen;
+  dyn_string dsAllTypes, dsUserDefinedTypes;
+  dyn_errClass deError;
+  dyn_dyn_int ddiDpeTypes;
+  dyn_dyn_string ddsDpeNames;
+
+
+  DebugTN("fwCaen.preInit script: running script");
+
+  dsAllTypes = dpTypes();
+  deError    = getLastError();
+  if( dynlen(deError) > 0 )
+  {
+    DebugTN("fwCaen.preInit script: there was an error getting all DPT of the current system, due to: " + getErrorText(deError));
+    return -1;
+  }
+
+
+  dsUserDefinedTypes = makeDynString("_FwCaenBoardSY1527A1676UserDefined",
+                                     "_FwCaenBoardSY1527A1660UserDefined",
+                                     "_FwCaenCrateEasyUserDefined",
+                                     "_FwCaenBoardEasyUserDefined",
+                                     "_FwCaenChannelADCUserDefined",
+                                     "_FwCaenChannelDACUserDefined",
+                                     "_FwCaenChannelUserDefined",
+                                     "_FwCaenCrateSY1527UserDefined",
+                                     "_FwCaenBoardSY1527UserDefined",
+                                     "_FwCaenCrateVMEUserDefined",
+                                     "_FwCaenChannelVMEUserDefined",
+									 "_FwCaenCrateNGPSUserDefined");
+
+
+  // If user defined type doesn't exist, create it
+  iLen = dynlen(dsUserDefinedTypes);
+  for( iLoop = 1 ; iLoop <= iLen ; iLoop++ )
+  {
+    if( dynContains(dsAllTypes, dsUserDefinedTypes[iLoop]) == 0 )
+    {
+      ddsDpeNames[1] = makeDynString(dsUserDefinedTypes[iLoop]);
+      ddiDpeTypes[1] = makeDynInt   (DPEL_STRING);
+      iResult        = dpTypeCreate(ddsDpeNames, ddiDpeTypes);
+      if( iResult < 0 )
+      {
+        DebugTN("fwCaen.preinit script: there was an error while creating missing user defined type " + dsUserDefinedTypes[iLoop] + ". Error result = " + iResult);
+        return -1;
+      }
+      else
+      {
+        deError = getLastError();
+        if( dynlen(deError) > 0 )
+        {
+          DebugTN("fwCaen.preInit script: there was an error while creating missing user defined type " + dsUserDefinedTypes[iLoop] + ". Error result = " + iResult + ". Due to: " + getLastError(deError));
+          return -1;
+        }
+        else
+        {
+          DebugTN("fwCaen.preinit script: created missing user defined type " + dsUserDefinedTypes[iLoop]);
+        }
+      }
+    }
+  }
+
+  DebugTN("fwCaen.preinit script: script finished");
+  return 0;
+}
+
+
+
+

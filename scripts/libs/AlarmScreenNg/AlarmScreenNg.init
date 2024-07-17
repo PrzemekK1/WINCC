@@ -1,0 +1,7 @@
+#uses "fwInstallation/fwInstallation.ctl"
+
+main() {
+  // cleanup
+  fwInstallation_cleanupObsoleteFiles("AlarmScreenNg",
+    makeDynString("help/en_US.utf8/AlarmScreenNg/scripts"), true);
+}

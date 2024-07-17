@@ -1,0 +1,21 @@
+main()
+{
+
+  // scripts/fwFsmSrvr moved to scripts/fwFsm/fwFsmSrvr.ctl
+  // adapt the CTRL manager
+
+  string oldManName = "fwFsmSrvr", newManName = "fwFSM/fwFsmSrvr.ctl";
+  dyn_mixed properties;
+  fwInstallationManager_getProperties("WCCOActrl", oldManName, properties);
+  if(dynlen(properties) >= FW_INSTALLATION_MANAGER_OPTIONS)
+  {
+    if(properties[FW_INSTALLATION_MANAGER_OPTIONS] == oldManName)
+    {
+      properties[FW_INSTALLATION_MANAGER_OPTIONS] = newManName;
+      fwInstallation_throw("fwFSM.init: Changing fwFsmSrvr Manager path to: " + newManName,"INFO");
+      fwInstallationManager_setProperties("WCCOActrl", oldManName, properties);
+    }
+  }
+
+  // we do not append the manager here - done in the postInstall
+}

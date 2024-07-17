@@ -1,0 +1,1 @@
+start explorer C:\Users\Public\Desktop\ControlServer.lnk

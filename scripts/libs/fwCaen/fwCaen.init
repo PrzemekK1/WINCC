@@ -1,0 +1,257 @@
+/** fwCaen component installation init script **/
+
+/** Default driver number assigned for CAEN devices
+ * See help/en_US.utf8/fwDevice/README-DriverNumbers.txt for full list of driver numbers assigments
+ */
+const int FW_CAEN_INIT_OPCUA_DRIVER_NUM = 6;
+
+int main()
+{
+  fwInstallation_throw("fwCaen.init script: running script", "INFO");
+
+  // Create confiugration datapoints for OPC UA client driver, server connection and subscription
+  if(!fwCaen_init_createOpcUaDriverConfiguration()){
+    fwInstallation_throw("fwCaen.init script: Error creating the OPC UA client " +
+                         "configuration for fwCaen, aborting driver adding", "ERROR");
+    return -1;
+  }
+
+  // Add OPC UA 6 manager and simulator
+  if(!fwCaen_init_addOpcUaDriver()){
+    fwInstallation_throw("fwCaen.init script: Error adding the OPC UA client driver number " +
+                         (string)FW_CAEN_INIT_OPCUA_DRIVER_NUM, "ERROR");
+    return -1;
+  }
+
+  // OPC UA server download
+  fwInstallation_popup("fwCaen requires CAEN OPC UA server as<br/>" +
+                       "a communication interface with CAEN hardware.<br/>"
+                       "Installer files and user manual are available from:<br/>"
+                       "<a href=https://jcop.web.cern.ch/pages/opc-hardware-simulation.html>" +
+                       "jcop.web.cern.ch/pages/opc-hardware-simulation.html</a>",
+                       FW_INSTALLATION_POPUP_TITLE_INFORMATION);
+
+  // Cleanup obsolete files
+  fwInstallation_cleanupObsoleteFiles(
+      "fwCaen", makeDynString("help/en_US.iso88591/fwCaen"), TRUE);
+  fwInstallation_cleanupObsoleteFiles(
+      "fwCaen", makeDynString(
+          "dplist/fwCaenCmsMdt.dpl",
+          "dplist/fwCaenOPC.dpl",
+          "fwCaenReleaseNotes.txt",
+          "config/fwCaen.config"));
+
+  fwInstallation_throw("fwCaen.init script: finished executing init file", "INFO");
+  return 0;
+}
+
+bool fwCaen_init_createOpcUaDriverConfiguration(bool forceOverwrite = false){
+  string sDriverNum = (string)FW_CAEN_INIT_OPCUA_DRIVER_NUM;
+  string dp;
+  bool setDefaultConfig;
+
+  // ===========================================
+  // Configure OPC UA subscription
+  string CAEN_OPCUA_SUBSCRIPTION_NAME = "OPCUA_CAEN_DefaultSubscription";
+  dp = "_" + CAEN_OPCUA_SUBSCRIPTION_NAME + "_2";
+  if(fwInstallationRedu_isRedundant() && !dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_OPCUASubscription"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+    dpSetDescription(dp + ".", "CAEN Server default subscription");
+  }
+  dp = "_" + CAEN_OPCUA_SUBSCRIPTION_NAME;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_OPCUASubscription"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+    setDefaultConfig = true;
+  }
+  if(setDefaultConfig || forceOverwrite){
+    dpSetDescription(dp + ".", "CAEN Server default subscription");
+
+    if(fwCaen_init_checkForErrors(
+        dpSetWait(
+            dp + ".Config.RequestedLifetimeCount",      100,
+            dp + ".Config.RequestedMaxKeepAliveCount",  10,
+            dp + ".Config.MaxNotificationsPerPublish",  0,
+            dp + ".Config.PublishingEnabled",           TRUE,
+            dp + ".Config.Priority",                    0,
+            dp + ".Config.SubscriptionType",            1,
+            dp + ".Config.RequestedPublishingInterval", 500,
+
+            dp + ".Config.MonitoredItems.TimestampsToReturn",             1,
+            dp + ".Config.MonitoredItems.QueueSize",                      1,
+            dp + ".Config.MonitoredItems.DiscardOldest",                  TRUE,
+            dp + ".Config.MonitoredItems.DataChangeFilter.Trigger",       1,
+            dp + ".Config.MonitoredItems.DataChangeFilter.DeadbandType",  0,
+            dp + ".Config.MonitoredItems.DataChangeFilter.DeadbandValue", 0.0,
+            dp + ".Config.MonitoredItems.SamplingInterval",               0,
+
+            dp + ".Config.Alarm.Acknowledgement", makeDynString("", "", ""),
+            dp + ".Config.Alarm.States",          makeDynString(),
+            dp + ".Config.Alarm.AlarmRanges",     makeDynUInt(),
+            dp + ".Config.Alarm.AlarmType",       "",
+            dp + ".Config.Alarm.Flags",           0x0),
+        "Failed to set configuration to datapoint: " + dp)){
+      return false;
+    }
+    fwInstallation_throw("fwCaen.init script: Default OPC UA Subscription DPs configured", "INFO");
+    setDefaultConfig = false;
+  }else{
+    fwInstallation_throw("fwCaen.init script: OPC UA Subscription DPs already existed. " +
+                         "Skipping configuration.", "INFO");
+  }
+
+  // ===========================================
+  // Configure OPC UA server connection
+  string CAEN_OPCUA_CONNECTION_NAME   = "OPCUA_CAEN";
+  dp = "_" + CAEN_OPCUA_CONNECTION_NAME + "_2";
+  if(fwInstallationRedu_isRedundant() && !dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_OPCUAServer"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+    dpSetDescription(dp + ".", "OPC UA CAEN server connection");
+  }
+  dp = "_" + CAEN_OPCUA_CONNECTION_NAME;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_OPCUAServer"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+    setDefaultConfig = true;
+  }
+  if(setDefaultConfig || forceOverwrite){
+    dpSetDescription(dp + ".", "OPC UA CAEN server connection");
+
+    if(fwCaen_init_checkForErrors(
+        dpSetWait(
+            dp + ".Config.ConnInfo",              "opc.tcp://localhost:4901",
+            dp + ".Config.AccessInfo",            "",
+            dp + ".Config.Password",              "5AA09AC6C9D08C80",
+            dp + ".Config.Active",                TRUE,
+            dp + ".Config.ReconnectTimer",        10,
+            dp + ".Config.StatusMapping",         makeDynString(),
+            dp + ".Config.StatusFilter",          makeDynUInt(),
+            dp + ".Config.Separator",             ".",
+            dp + ".Config.Subscriptions",         makeDynString(getSystemName() + "_OPCUA_CAEN_DefaultSubscription"),
+            dp + ".Config.HistoryReadTimestamps", 0,
+            dp + ".Config.LocalDiscoveryServers", makeDynString(),
+            dp + ".Config.Flags",                 0,
+            dp + ".Config.Security.Policy",       0,
+            dp + ".Config.Security.MessageMode",  0,
+            dp + ".Config.Security.Certificate",  "",
+            dp + ".Redu.Config.ConnInfo",         "opc.tcp://",
+            dp + ".Redu.Config.Active",           FALSE,
+            dp + ".Redu.Config.HistoryReadMode",  0,
+            dp + ".Redu.Config.InputMode",        0),
+        "Failed to set configuration to datapoint: " + dp)){
+      return false;
+    }
+    fwInstallation_throw("fwCaen.init script: Default OPC UA Server connection DPs configured", "INFO");
+    setDefaultConfig = false;
+  }else{
+    fwInstallation_throw("fwCaen.init script: OPC UA Server connection DPs already existed. " +
+                         "Skipping configuration.", "INFO");
+  }
+
+  // ===========================================
+  // Configure OPC UA client driver
+  dp = "_OPCUA" + sDriverNum;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_OPCUA"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+    setDefaultConfig = true;
+  }
+  if(setDefaultConfig || forceOverwrite){
+    if(fwCaen_init_checkForErrors(
+        dpSetWait(dp + ".Config.Servers", makeDynString("OPCUA_CAEN")),
+        "Failed to set configuration to datapoint: " + dp)){
+      return false;
+    }
+    fwInstallation_throw("fwCaen.init script: Default OPC UA Driver DPs configured", "INFO");
+    setDefaultConfig = false;
+  }else{
+    fwInstallation_throw("fwCaen.init script: OPC UA Driver DPs already existed. " +
+                         "Skipping configuration.", "INFO");
+  }
+
+  // ===========================================
+  // Create internal WinCC OA driver datapoints
+  dp = "_Driver" + sDriverNum;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_DriverCommon"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+  }
+  dp = "_Driver" + sDriverNum + "_2";
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_DriverCommon"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+  }
+  dp = "_Stat_Configs_driver_" + sDriverNum;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_Statistics_DriverConfigs"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+  }
+  dp = "_Stat_2_Configs_driver_" + sDriverNum;
+  if(!dpExists(dp)){
+    if(fwCaen_init_checkForErrors(
+         dpCreate(dp, "_Statistics_DriverConfigs"), "Failed to create datapoint: " + dp)){
+      return false;
+    }
+  }
+  return true;
+}
+
+bool fwCaen_init_addOpcUaDriver(){
+  string sDriverNum = (string)FW_CAEN_INIT_OPCUA_DRIVER_NUM;
+
+  int iResult = fwInstallationManager_appendDriver(
+      "SIM",
+      "CAEN OPC UA connection to hardware",
+      fwInstallation_getWCCOAExecutable("opcua"),
+      "always",
+      30,
+      2,
+      2,
+      "-num " + sDriverNum);
+
+  string sResultText;
+  switch( iResult ){
+    case 1:
+      sResultText = "OK"; break;
+    case 2:
+      sResultText = "Already exists"; break;
+    case 0:
+      sResultText = "User declined to add it"; break;
+    default:
+      fwInstallation_throw("fwCaen_init_addOpcUaDriver() -> Error adding OPC UA client and Simulation " +
+                           "driver with number " + sDriverNum + ": Failed, original error: " + iResult, "ERROR");
+      return false;
+  }
+
+  fwInstallation_throw("fwCaen_init_addOpcUaDriver() -> Added OPC UA client and Simulation driver " +
+                       "with number " + sDriverNum + ": " + sResultText, "INFO");
+  return true;
+}
+
+bool fwCaen_init_checkForErrors(int actionStatus, string messageIfError){
+  dyn_errClass error = getLastError();
+  if(actionStatus != 0 || !error.isEmpty()){
+    string errInfo = error.isEmpty()?"":"; Reason: " + getErrorText(error.first());
+    fwInstallation_throw("fwCaen.init script: " + messageIfError + errInfo, "ERROR");
+    return true;
+  }
+  return false;
+}
